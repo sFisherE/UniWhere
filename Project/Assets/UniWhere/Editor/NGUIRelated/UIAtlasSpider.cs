@@ -205,13 +205,20 @@ public class UIAtlasSpider : EditorWindow
                                                 GUI.contentColor = Color.black;
 
                                                 GUIStyle style = EditorStyles.whiteLabel;
-                                                if (Selection.activeGameObject == go)
+                                                //选择到根节点，所有相关的都可以显示
+                                                Object prefab = PrefabUtility.FindPrefabRoot(go);
+                                                //if (prefab!=null)
+                                                //{
+                                                //    Debug.Log(prefab.name);
+                                                //}
+                                                if (Selection.activeObject == prefab)
                                                 {
                                                     GUI.contentColor = Color.blue;
                                                 }
                                                 if (GUILayout.Button(path, style, GUILayout.MinWidth(100f)))
                                                 {
-                                                    Selection.activeGameObject = go;
+                                                    Selection.activeObject = prefab;
+                                                    //Selection.activeObject
                                                 }
                                                 GUILayout.EndHorizontal();
                                             }
